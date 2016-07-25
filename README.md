@@ -28,9 +28,9 @@ Endpoint description
 |/client_token|GET| Gets client token, this token will be used in requests to tokenise creditcards   |
 | /customer  |  POST | Create new customer |
 | /sale | POST  | Create new sale|
-| /settle/:transactionId | GET  | |
-| /refund/:transactionId | GET  | |
-| /void/:transactionId | GET  | |
+| /settle/:transactionId | GET  | settle a transaction |
+| /refund/:transactionId | GET  | refund a transaction|
+| /void/:transactionId | GET  | void a transaction|
 
 
 
