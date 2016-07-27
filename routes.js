@@ -88,16 +88,16 @@ router.get('/settle/:transactionId', function(req, res) {
 	// settlement amount cannot be greater than authorized amount -  check for this
 	// also check for invalid transaction id 
 	braintree.transaction.submitForSettlement( transactionId, amount, function (err, result) {
-	
+		if (result.success || result.transaction) {
+	      res.status(200).json({'Success': 'Transaction #'+transactionId+" settled"});
+	    } else {
+	      transactionErrors = result.errors.deepErrors();
+	      req.flash('error', {msg: formatErrors(transactionErrors)});
+	      res.status(200).json({'Error': formatErrors(transactionErrors)});	
+	    }
 	});
 
-	// if (result.success || result.transaction) {
- //      res.redirect('checkouts/' + result.transaction.id);
- //    } else {
- //      transactionErrors = result.errors.deepErrors();
- //      req.flash('error', {msg: formatErrors(transactionErrors)});
- //      res.redirect('checkouts/new');
- //    }
+	
 });
 
 // 3 - refund transaction
@@ -174,8 +174,27 @@ router.get('/cards/:customerId', function(req, res) {
 
 // add a new card for an existing customer.....
 router.post('/card', function(req, res) {
-	//if body doesnt contain required data reject	
-	//add new card for existing customer
+	var custId 		= req.body.customerId || undefined,
+		cardToken 		= req.body.cardToken  || undefined; 
+
+	if(custId === undefined) {
+		res.status(400).json({'Error': 'Customer id is missing.'});
+		return;
+	}	
+	
+	if(cardToken === undefined) {
+		res.status(400).json({'Error': 'Credit card token is missing.'});
+		return;
+	}	
+
+	//note: cardholder name is optional, if required it can be added as part of  PaymentMethod.create 
+	braintree.paymentMethod.create({customerId: custId, paymentMethodNonce: cardToken}, function(err, result) {
+		if (result.success) {
+			res.status(200).json({"success": "Card added to customer."});	
+		} else {
+			res.status(200).json({"Error": "Unable to add card to customer"});
+		}
+	});
 });
 
 
