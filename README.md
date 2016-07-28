@@ -9,6 +9,7 @@ TODO: Describe the installation process
 2. npm install
 3. copy credentials.sample.env to .env
 4. Add your braintree settings
+5. start app with 'node index.js'
 
 ## Usage
 run from command line
