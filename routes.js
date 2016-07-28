@@ -11,7 +11,7 @@ var braintree = require("./lib/bt.js");
 
 
 // begin end points--------------------
-//---use this client token when attempting to toeknise credit cards from the front end
+//---use this client token when attempting to tokenise credit cards from the front end
 router.get("/client_token", function (req, res) {
   braintree.clientToken.generate({}, function (err, response) {
     res.status(200).send(response.clientToken);
@@ -84,7 +84,7 @@ router.get('/settle/:transactionId', function(req, res) {
 
 	// amount is optional...if not provided...amount authorized is settled....
 
-	// only authorized transactions can be submitted for settlement
+	// Note: only authorized transactions can be submitted for settlement
 	// settlement amount cannot be greater than authorized amount -  check for this
 	// also check for invalid transaction id 
 	braintree.transaction.submitForSettlement( transactionId, amount, function (err, result) {
