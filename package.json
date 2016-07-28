@@ -16,11 +16,13 @@
   "author": "skota",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "braintree": "^1.41.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "body-parser": "^1.15.2",
-    "morgan": "^1.7.0"
+    "jasmine": "^2.4.1",
+    "morgan": "^1.7.0",
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "jasmine-node": "^1.14.5",
