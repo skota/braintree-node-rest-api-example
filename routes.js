@@ -14,7 +14,7 @@ var braintree = require("./lib/bt.js");
 //---use this client token when attempting to tokenise credit cards from the front end
 router.get("/client_token", function (req, res) {
   braintree.clientToken.generate({}, function (err, response) {
-    res.status(200).send(response.clientToken);
+    res.status(200).json({"token" : response.clientToken});
   });
 });
 
