@@ -3,8 +3,6 @@
 A quick starter API for braintree payment processing written in express/node. Includes most commonly used endpoints.
 
 ## Installation
-
-TODO: Describe the installation process
 1. git clone
 2. npm install
 3. copy credentials.sample.env to .env
@@ -32,9 +30,8 @@ Endpoint description
 | /settle/:transactionId | GET  | settle a transaction |
 | /refund/:transactionId | GET  | refund a transaction|
 | /void/:transactionId | GET  | void a transaction|
-
-
-
+| /cards/:customerId | GET  | Get customer cards|
+| /card | POST  | Add card to existing customer|
 
 
 
