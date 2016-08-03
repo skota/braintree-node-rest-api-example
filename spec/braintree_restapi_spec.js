@@ -15,26 +15,12 @@ describe("Test Braintree REST API end points ", function() {
 	// //should return a 400 if required paramters are not present
 	describe("POST /customer", function() {
 		it("Returns a 400 if all paramaters are not present", function() {
-			request.get(base_url+'/client_token', function(error, response, body) {
-			expect(response.statusCode.toBe(200));
-				
+			request.post(base_url+'/customer', function(error, response, body) {
+				expect(response.statusCode.toBe(400));
 			})	
 		})
 		
 	});
 
-	// //should return a status code 201 if customer is created and a customer id
-	// describe("POST /customer", function() {
-		
-	// });
 
-	// //should return a 400 if required paramters are not present
-	// describe("POST /sale", function() {
-		
-	// })
-
-	// //should return a status code 201 if customer is created and a customer id
-	// describe("POST /sale", function() {
-		
-	// })	
 });
