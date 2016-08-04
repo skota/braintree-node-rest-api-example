@@ -25,7 +25,10 @@
     "request": "^2.74.0"
   },
   "devDependencies": {
+    "gulp-jshint": "^2.0.1",
     "jasmine-node": "^1.14.5",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
     "path": "^0.12.7"
   }
 }
