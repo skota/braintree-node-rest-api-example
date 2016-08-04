@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine_node spec"
+    "test": "./node_modules/.bin/jasmine-node spec"
   },
   "keywords": [
     "braintree",

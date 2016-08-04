@@ -27,7 +27,8 @@ router.post('/customer', function(req, res) {
 		cardNonce = req.body.paymentmethodnonce || undefined; 
 
 	if (fName === undefined || lName === undefined || cardNonce === undefined)	{
-		res.status(400).json({'Error': 'Some patameters are missing. All parameters are required'});			
+		res.status(400).json({'Error': 'Some parameters are missing. All parameters are required'});			
+		return;
 	}
 
 	braintree.customer.create({
@@ -52,7 +53,7 @@ router.post('/sale', function(req,res) {
 
 	if ( token === undefined || amount === undefined  )	 {
 		res.status(400).json({'Error': 'Some patameters are missing. All parameters are required'});			
-	}	return -1;
+	}	return;
 
 	braintree.transaction.sale({
   		amount: amount,

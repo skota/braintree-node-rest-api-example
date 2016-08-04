@@ -1,22 +1,28 @@
 var request = require('request');
-var base_url = "http://localhost:3000";
+require('dotenv').load();
+
+var base_url = process.env.BASEURL;
 
 describe("Test Braintree REST API end points ", function() {
-	describe("Get /client_token", function() {
-		it("returns a status code of 200", function() {
+	
+	describe("Get /client_token1", function() {
+		it("returns a status code of 200", function(done) {
 			request.get(base_url+'/client_token', function(error, response, body) {
-				expect(response.statusCode.toBe(200));
-				
+				//console.log(response.statusCode);
+				expect(response.statusCode).toBe(200);
+				done();
 			})	
+			
 		})
-		
 	});
 
 	// //should return a 400 if required paramters are not present
 	describe("POST /customer", function() {
-		it("Returns a 400 if all paramaters are not present", function() {
+		it("Returns a 400 if all paramaters are not present", function(done) {
 			request.post(base_url+'/customer', function(error, response, body) {
-				expect(response.statusCode.toBe(400));
+				//console.log(response.statusCode);
+				expect(response.statusCode).toBe(400);
+				done();
 			})	
 		})
 		
