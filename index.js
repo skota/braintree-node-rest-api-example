@@ -6,7 +6,7 @@ app = express();
 
 // this will allow us to fetch the url encoded params...
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 var router = require('./routes');

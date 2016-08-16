@@ -1,10 +1,12 @@
-"use strict"
+(function() {
+"use strict";
 
 var express = require("express");
 var router = express.Router();
 var _ = require('lodash');
-var util = require('util'),
-    braintree = require('braintree');
+var util = require('util');
+
+//    braintree = require('braintree');
 
 //configure and load barintree gateway object
 var braintree = require("./lib/bt.js");
@@ -52,8 +54,9 @@ router.post('/sale', function(req,res) {
 		settleNow 	= req.body.settlement || true; 
 
 	if ( token === undefined || amount === undefined  )	 {
-		res.status(400).json({'Error': 'Some patameters are missing. All parameters are required'});			
-	}	return;
+		res.status(400).json({'Error': 'Some parameters are missing. All parameters are required'});			
+		return;
+	}	
 
 	braintree.transaction.sale({
   		amount: amount,
@@ -165,9 +168,9 @@ router.get('/cards/:customerId', function(req, res) {
 	//get list of cards for customer
 	braintree.customer.find(customerId, function(err, customer) {
 		if (customer !== null) {
-			res.status(200).json({"result": customer.creditCards})	
+			res.status(200).json({"result": customer.creditCards});	
 		} else {
-			res.status(200).json({"Error": "Customer not found"})	
+			res.status(200).json({"Error": "Customer not found"});	
 		}
 	});
 });
@@ -212,3 +215,4 @@ router.post('/charge/paypal', function(req, res) {
 // Route::post('/partialsettlement', 'CardController@partialSettlement');
 
 module.exports = router;
+})();
